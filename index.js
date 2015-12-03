@@ -72,6 +72,10 @@ function voting (schema, options) {
       return schema.methods.upvoted.call(this, user._id);
     };
 
+    if (!this.vote.positive){
+      return false
+    }
+
     return !!~this.vote.positive.indexOf(user);
   };
 
@@ -79,6 +83,10 @@ function voting (schema, options) {
     if (user._id) {
       return schema.methods.downvoted.call(this, user._id);
     };
+
+    if (!this.vote.negative){
+      return false
+    }
 
     return !!~this.vote.negative.indexOf(user);
   };
